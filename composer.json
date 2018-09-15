@@ -1,0 +1,14 @@
+{
+    "name": "wilhelmsempre/user-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rafał Głuszak",
+            "email": "rafal.gluszak@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "symfony/symfony": "3.4.*"
+    }
+}
