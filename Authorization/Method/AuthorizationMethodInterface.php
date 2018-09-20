@@ -1,10 +1,10 @@
 <?php
 
-namespace WilhelmSempre\UserBundle\Authorization;
+namespace WilhelmSempre\UserBundle\Authorization\Method;
 
 /**
  * Interface AuthorizationMethodInterface
- * @package WilhelmSempre\UserBundle\Authorization
+ * @package WilhelmSempre\UserBundle\Authorization\Method
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */

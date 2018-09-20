@@ -1,12 +1,12 @@
 <?php
 
-namespace WilhelmSempre\UserBundle\Method;
+namespace WilhelmSempre\UserBundle\Authorization\Method\GoogleAuthenticator;
 
-use WilhelmSempre\UserBundle\Authorization\AuthorizationMethodInterface;
+use WilhelmSempre\UserBundle\Authorization\Method\AuthorizationMethodInterface;
 
 /**
  * Class GoogleAuthenticator
- * @package WilhelmSempre\UserBundle\Method
+ * @package WilhelmSempre\UserBundle\Authorization\Method\GoogleAuthenticator
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
@@ -31,7 +31,7 @@ class GoogleAuthenticator implements AuthorizationMethodInterface
      */
     public function process(): void
     {
-
+        $this->authorizationToken = 'test';
     }
 
     /**

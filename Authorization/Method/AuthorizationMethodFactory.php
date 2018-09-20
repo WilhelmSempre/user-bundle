@@ -1,18 +1,17 @@
 <?php
 
-namespace WilhelmSempre\UserBundle\Authorization;
+namespace WilhelmSempre\UserBundle\Authorization\Method;
 
-use WilhelmSempre\UserBundle\Authorization\Method\Mail;
-use WilhelmSempre\UserBundle\Exceptions\InvalidAuthorizationMethodException;
-use WilhelmSempre\UserBundle\Method\GoogleAuthenticator;
+use WilhelmSempre\UserBundle\Authorization\Method\Mail\Mail;
+use WilhelmSempre\UserBundle\Authorization\Method\GoogleAuthenticator\GoogleAuthenticator;
 
 /**
  * Class AuthorizationMethodFactory
- * @package WilhelmSempre\UserBundle\Authorization
+ * @package WilhelmSempre\UserBundle\Authorization\Method
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class AuthorizationMethodFactory extends AuthorizationMethodTypes
+class AuthorizationMethodFactory
 {
 
     /**
@@ -21,16 +20,18 @@ class AuthorizationMethodFactory extends AuthorizationMethodTypes
      *
      * @throws InvalidAuthorizationMethodException
      */
-    public function getAuthoricationMethod(string $method): AuthorizationMethodInterface
+    public function getAuthorizationMethod(string $method): AuthorizationMethodInterface
     {
-        if ($method === AuthorizationMethodTypes::MAIL) {
-            return new Mail();
-        }
 
-        if ($method === AuthorizationMethodTypes::GOOGLE_AUTHENTICATOR) {
-            return new GoogleAuthenticator();
+        switch ($method) {
+            case AuthorizationMethodTypes::MAIL:
+                return new Mail();
+                break;
+            case AuthorizationMethodTypes::GOOGLE_AUTHENTICATOR:
+                return new GoogleAuthenticator();
+                break;
+            default:
+                throw new InvalidAuthorizationMethodException();
         }
-
-        throw new InvalidAuthorizationMethodException();
     }
 }
