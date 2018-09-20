@@ -15,10 +15,7 @@ class AuthorizationMethodFactory
 {
 
     /**
-     * @param string $method
-     * @return AuthorizationMethodInterface
-     *
-     * @throws InvalidAuthorizationMethodException
+     * @inheritdoc
      */
     public function getAuthorizationMethod(string $method): AuthorizationMethodInterface
     {
