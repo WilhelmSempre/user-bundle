@@ -2,6 +2,7 @@
 
 namespace WilhelmSempre\UserBundle\Authorization\Method;
 
+use WilhelmSempre\UserBundle\Authorization\AuthorizationMethodFactoryInterface;
 use WilhelmSempre\UserBundle\Authorization\Method\Mail\Mail;
 use WilhelmSempre\UserBundle\Authorization\Method\GoogleAuthenticator\GoogleAuthenticator;
 
@@ -11,7 +12,7 @@ use WilhelmSempre\UserBundle\Authorization\Method\GoogleAuthenticator\GoogleAuth
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class AuthorizationMethodFactory
+class AuthorizationMethodFactory implements AuthorizationMethodFactoryInterface
 {
 
     /**
