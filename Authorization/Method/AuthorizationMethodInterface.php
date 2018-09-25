@@ -12,11 +12,6 @@ interface AuthorizationMethodInterface
 {
 
     /**
-     * AuthorizationMethodInterface constructor.
-     */
-    public function __construct();
-
-    /**
      * @return void
      */
     public function process(): void;
@@ -24,5 +19,5 @@ interface AuthorizationMethodInterface
     /**
      * @return string
      */
-    public function getToken(): string;
+    public function getAuthorizationCode(): string;
 }

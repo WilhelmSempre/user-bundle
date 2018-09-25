@@ -1,10 +1,10 @@
 <?php
 
-namespace WilhelmSempre\UserBundle\Authorization;
+namespace WilhelmSempre\UserBundle\Authorization\Method;
 
 /**
  * Interface AuthorizationMethodFactoryInterface
- * @package WilhelmSempre\UserBundle\Authorization
+ * @package WilhelmSempre\UserBundle\Authorization\Method
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
@@ -15,5 +15,5 @@ interface AuthorizationMethodFactoryInterface
      * @param string $method
      * @return AuthorizationMethodInterface
      */
-    public function getAuthorizationMethod(string $method): AuthorizationMethodInterface;
+    public function createAuthorizationMethod(): AuthorizationMethodInterface;
 }

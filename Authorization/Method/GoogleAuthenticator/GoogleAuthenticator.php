@@ -2,7 +2,9 @@
 
 namespace WilhelmSempre\UserBundle\Authorization\Method\GoogleAuthenticator;
 
+use WilhelmSempre\UserBundle\Authorization\Code\Encoder\AuthorizationCodeEncoder;
 use WilhelmSempre\UserBundle\Authorization\Method\AuthorizationMethodInterface;
+
 
 /**
  * Class GoogleAuthenticator
@@ -16,28 +18,22 @@ class GoogleAuthenticator implements AuthorizationMethodInterface
     /**
      * @var string
      */
-    public $authorizationToken;
-
-    /**
-     * @inheritdoc
-     */
-    public function __construct()
-    {
-        $this->process();
-    }
+    private $authorizationCode;
 
     /**
      * @inheritdoc
      */
     public function process(): void
     {
-        $this->authorizationToken = 'test';
+    	$authorizationCodeEncoder = new AuthorizationCodeEncoder();
+    	
+        $this->authorizationCode = $authorizationCodeEncoder->createAuthorizationCode();
     }
 
     /**
      * @inheritdoc
      */
-    public function getToken(): string
+    public function getAuthorizationCode(): string
     {
         return $this->authorizationToken;
     }
