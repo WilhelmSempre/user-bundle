@@ -2,7 +2,7 @@
 
 namespace WilhelmSempre\UserBundle\Authorization\Method\Mail;
 
-use WilhelmSempre\UserBundle\Authorization\Code\Encoder\AuthorizationCodeEncoder;
+use WilhelmSempre\UserBundle\Authorization\Method\AuthenticatorTrait;
 use WilhelmSempre\UserBundle\Authorization\Method\AuthorizationMethodInterface;
 
 /**
@@ -13,27 +13,5 @@ use WilhelmSempre\UserBundle\Authorization\Method\AuthorizationMethodInterface;
  */
 class Mail implements AuthorizationMethodInterface
 {
-
-    /**
-     * @var string
-     */
-    private $authorizationCode;
-
-    /**
-     * @inheritdoc
-     */
-    public function process(): void
-    {
-        $authorizationCodeEncoder = new AuthorizationCodeEncoder();
-        
-        $this->authorizationCode = $authorizationCodeEncoder->createAuthorizationCode();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getAuthorizationCode(): string
-    {
-        return $this->authorizationCode;
-    }
+	use AuthenticatorTrait;
 }

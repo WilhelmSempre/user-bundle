@@ -3,16 +3,16 @@
 namespace WilhelmSempre\UserBundle\Exceptions;
 
 /**
- * Class Exception
+ * Class NullAuthorizationMethodException
  * @package WilhelmSempre\UserBundle\Exceptions
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class InvalidAuthorizationMethodException extends \Exception
+class NullAuthorizationMethodException extends \Exception
 {
 
     /**
-     * Exception constructor
+     * NullAuthorizationMethodException constructor
      */
     public function __construct()
     {

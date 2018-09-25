@@ -8,6 +8,7 @@ use WilhelmSempre\UserBundle\Authorization\Method\Mail\MailFactory;
 use WilhelmSempre\UserBundle\Authorization\Method\AuthorizationMethodFactoryInterface;
 use WilhelmSempre\UserBundle\Authorization\Method\AuthorizationMethodTypes;
 use WilhelmSempre\UserBundle\Authorization\Method\AuthorizationMethodInterface;
+use WilhelmSempre\UserBundle\Exceptions\NullAuthorizationMethodException;
 
 /**
  * Class AuthorizationMethodFactory
@@ -32,7 +33,7 @@ class Authorization implements AuthorizationInterface
                 $factory = new GoogleAuthenticatorFactory();
                 break;
             default:
-                throw new InvalidAuthorizationMethodException();
+                throw new NullAuthorizationMethodException();
         }
 
         return $factory->createAuthorizationMethod();
