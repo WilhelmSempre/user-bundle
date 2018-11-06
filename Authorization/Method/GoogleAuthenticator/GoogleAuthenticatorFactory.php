@@ -15,7 +15,7 @@ class GoogleAuthenticatorFactory implements AuthorizationMethodFactoryInterface
 {
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function createAuthorizationMethod(): AuthorizationMethodInterface
     {

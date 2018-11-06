@@ -17,9 +17,9 @@ class AuthorizationPlainPrinter implements AuthorizationPrinterInterface
 	 * @var string
 	 */
 	private $authorizationCode;
-	
+
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function getAuthorizationCode(): string
 	{
@@ -27,7 +27,7 @@ class AuthorizationPlainPrinter implements AuthorizationPrinterInterface
 	}
 	
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function setAuthorizationCode(string $authorizationCode): AuthorizationPrinterInterface
 	{

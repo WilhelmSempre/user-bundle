@@ -3,6 +3,7 @@
 namespace WilhelmSempre\UserBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 
 /**
  * Class User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class User implements UserInterface
+abstract class User implements UserInterface, \Serializable, SecurityUserInterface
 {
 
     /**
@@ -51,6 +52,13 @@ class User implements UserInterface
     protected $uid;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="simple_array")
+     */
+    protected $roles;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
@@ -58,22 +66,28 @@ class User implements UserInterface
     protected $email;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="authorization_method", type="string", length=255)
+     * @ORM\Column(name="authorization_method", type="integer", length=1)
      */
     protected $authorizationMethod;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="authorization_code", type="string", length=255)
+     * @ORM\Column(name="authorization_secret_code", type="string", length=255)
      */
-    protected $authorizationCode;
+    protected $authorizationSecretCode;
 
     /**
-     * @param int $id
-     * @return UserInterface
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
+     */
+    protected $token;
+
+    /**
+     * {@inheritdoc}
      */
     public function setId(int $id): UserInterface
     {
@@ -83,32 +97,31 @@ class User implements UserInterface
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
     /**
-     * @param string $username
-     * @return UserInterface
+     * {@inheritdoc}
      */
     public function setUsername(string $username): UserInterface
     {
@@ -118,8 +131,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param string $password
-     * @return UserInterface
+     * {@inheritdoc}
      */
     public function setPassword(string $password): UserInterface
     {
@@ -129,8 +141,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param \DateTime $createdAt
-     * @return UserInterface
+     * {@inheritdoc}
      */
     public function setCreatedAt(\DateTime $createdAt): UserInterface
     {
@@ -140,16 +151,15 @@ class User implements UserInterface
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
     /**
-     * @param string $uid
-     * @return UserInterface
+     * {@inheritdoc}
      */
     public function setUid(string $uid): UserInterface
     {
@@ -159,16 +169,15 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getUid(): string
+    public function getUid(): ?string
     {
         return $this->uid;
     }
 
     /**
-     * @param string $email
-     * @return UserInterface
+     * {@inheritdoc}
      */
     public function setEmail(string $email): UserInterface
     {
@@ -178,43 +187,124 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getAuthorizationCode(): string
+	public function setAuthorizationSecretCode(string $secretCode): UserInterface
+	{
+		$this->authorizationSecretCode = $secretCode;
+		
+		return $this;
+	}
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAuthorizationSecretCode(): ?string
     {
-        return $this->authorizationCode;
+        return $this->authorizationSecretCode;
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getAuthorizationMethod(): string
+    public function getAuthorizationMethod(): ?int
     {
         return $this->authorizationMethod;
     }
 
     /**
-     * @param string $authorizationMethod
-     * @return UserInterface
+     * {@inheritdoc}
      */
-    public function setAuthorizationMethod(string $authorizationMethod): UserInterface
+    public function setAuthorizationMethod(int $authorizationMethod): UserInterface
     {
         $this->authorizationMethod = $authorizationMethod;
 
         return $this;
     }
 
-    public function test(): UserInterface
+    /**
+     * {@inheritdoc}
+     */
+    public function serialize()
     {
+	    return serialize([
+		    $this->id,
+		    $this->username,
+		    $this->password,
+	    ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function unserialize($serialized)
+    {
+	    list (
+		    $this->id,
+		    $this->username,
+		    $this->password
+	    ) = unserialize($serialized, [
+	        'allowed_classes' => false,
+	    ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function eraseCredentials()
+    {
+	   
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRole(string $role): UserInterface
+    {
+        $this->roles[] = $role;
+
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getRoles(): array
+    {
+	    return array_unique($this->roles);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSalt()
+    {
+	    return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setToken(?string $token = null): UserInterface
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
 }

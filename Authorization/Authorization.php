@@ -20,7 +20,7 @@ class Authorization implements AuthorizationInterface
 {
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function createAuthorization(string $authorizationMethod): AuthorizationMethodInterface
     {

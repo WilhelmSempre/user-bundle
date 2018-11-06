@@ -31,7 +31,7 @@ interface AuthorizationMethodInterface
 	public function setAuthorizationPrinter(AuthorizationPrinterInterface $authorizationPrinter): AuthorizationMethodInterface;
 	
 	/**
-	 * @return AuthorizationMethodInterface
+	 * @return AuthorizationValidatorInterface
 	 *
 	 * @throws NullAuthorizationValidatorException
 	 */

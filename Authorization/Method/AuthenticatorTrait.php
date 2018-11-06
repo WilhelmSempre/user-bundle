@@ -32,7 +32,7 @@ trait AuthenticatorTrait
 	private $authorizationPrinter;
 	
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function process(): AuthorizationMethodInterface
 	{
@@ -47,7 +47,7 @@ trait AuthenticatorTrait
 	}
 	
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function setAuthorizationPrinter(AuthorizationPrinterInterface $authorizationPrinter): AuthorizationMethodInterface
 	{
@@ -57,7 +57,7 @@ trait AuthenticatorTrait
 	}
 	
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function setAuthorizationValidator(AuthorizationValidatorInterface $authorizationValidator): AuthorizationMethodInterface
 	{
@@ -67,7 +67,7 @@ trait AuthenticatorTrait
 	}
 	
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function getAuthorizationPrinter(): AuthorizationPrinterInterface
 	{
@@ -79,7 +79,7 @@ trait AuthenticatorTrait
 	}
 	
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function getAuthorizationValidator(): AuthorizationValidatorInterface
 	{
@@ -87,6 +87,6 @@ trait AuthenticatorTrait
 			throw new NullAuthorizationValidatorException();
 		}
 		
-		return $this->authorizationValidation;
+		return $this->authorizationValidator;
 	}
 }

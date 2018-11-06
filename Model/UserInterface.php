@@ -18,19 +18,19 @@ interface UserInterface
     public function setId(int $id): self;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int;
+    public function getId(): ?int;
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getUsername(): string;
+    public function getUsername(): ?string;
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getPassword(): string;
+    public function getPassword(): ?string;
 
     /**
      * @param string $username
@@ -51,9 +51,9 @@ interface UserInterface
     public function setCreatedAt(\DateTime $date): self;
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime;
+    public function getCreatedAt(): ?\DateTime;
 
     /**
      * @param string $uid
@@ -62,9 +62,9 @@ interface UserInterface
     public function setUid(string $uid): self;
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getUid(): string;
+    public function getUid(): ?string;
 
     /**
      * @param string $email
@@ -73,23 +73,51 @@ interface UserInterface
     public function setEmail(string $email): self;
 
     /**
-     * @return string
+     * @return UserInterface
      */
-    public function getEmail(): string;
+    public function getRoles(): array;
 
     /**
-     * @return string
+     * @param string $role
+     * @return UserInterface
      */
-    public function getAuthorizationCode(): string;
+    public function setRole(string $role): UserInterface;
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getAuthorizationMethod(): string;
+    public function getEmail(): ?string;
+
+    /**
+     * @return null|string
+     */
+    public function getAuthorizationSecretCode(): ?string;
+
+    /**
+     * @return int|null
+     */
+    public function getAuthorizationMethod(): ?int;
 
     /**
      * @param string $authorizationMethod
      * @return UserInterface
      */
-    public function setAuthorizationMethod(string $authorizationMethod): self;
+    public function setAuthorizationMethod(int $authorizationMethod): self;
+	
+	/**
+	 * @param string $secretCode
+	 * @return UserInterface
+	 */
+	public function setAuthorizationSecretCode(string $secretCode): self;
+
+    /**
+     * @param null $token
+     * @return UserInterface
+     */
+	public function setToken(?string $token = null): self;
+
+    /**
+     * @return null|string
+     */
+	public function getToken(): ?string;
 }

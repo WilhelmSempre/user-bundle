@@ -14,7 +14,7 @@ class GoogleAuthenticatorValidator implements AuthorizationValidatorInterface
 {
 	
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
 	public function isValid(string $authorizationCode): bool
 	{

@@ -16,7 +16,7 @@ class MailFactory implements AuthorizationMethodFactoryInterface
 {
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function createAuthorizationMethod(): AuthorizationMethodInterface
     {
