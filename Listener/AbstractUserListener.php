@@ -1,6 +1,6 @@
 <?php
 
-namespace WilhelmSempre\UserBundle\Listeners;
+namespace WilhelmSempre\UserBundle\Listener;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Event\AuthenticationFailureEvent;
 
 /**
  * Class AbstractUserListener
- * @package WilhelmSempre\UserBundle\Listeners
+ * @package WilhelmSempre\UserBundle\Listener
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */

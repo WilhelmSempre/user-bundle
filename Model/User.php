@@ -87,6 +87,13 @@ abstract class User implements UserInterface, \Serializable, SecurityUserInterfa
     protected $token;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="authorized", type="boolean", options={"default" : 0})
+     */
+    protected $authorized = false;
+
+    /**
      * {@inheritdoc}
      */
     public function setId(int $id): UserInterface
@@ -306,5 +313,21 @@ abstract class User implements UserInterface, \Serializable, SecurityUserInterfa
     public function getToken(): ?string
     {
         return $this->token;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAuthorized(): bool
+    {
+        return $this->authorized;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAuthorized(bool $authorized): void
+    {
+        $this->authorized = $authorized;
     }
 }

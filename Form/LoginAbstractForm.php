@@ -1,6 +1,6 @@
 <?php
 
-namespace WilhelmSempre\UserBundle\Forms;
+namespace WilhelmSempre\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Class LoginAbstractForm
- * @package WilhelmSempre\UserBundle\Forms
+ * @package WilhelmSempre\UserBundle\Form
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */

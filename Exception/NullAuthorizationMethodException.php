@@ -1,10 +1,10 @@
 <?php
 
-namespace WilhelmSempre\UserBundle\Exceptions;
+namespace WilhelmSempre\UserBundle\Exception;
 
 /**
  * Class NullAuthorizationMethodException
- * @package WilhelmSempre\UserBundle\Exceptions
+ * @package WilhelmSempre\UserBundle\Exception
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */

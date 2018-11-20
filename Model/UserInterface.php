@@ -120,4 +120,14 @@ interface UserInterface
      * @return null|string
      */
 	public function getToken(): ?string;
+
+    /**
+     * @return bool
+     */
+    public function isAuthorized(): bool;
+
+    /**
+     * @param bool $authorized
+     */
+    public function setAuthorized(bool $authorized): void;
 }

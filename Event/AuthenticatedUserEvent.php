@@ -1,13 +1,13 @@
 <?php
 
-namespace WilhelmSempre\UserBundle\Events;
+namespace WilhelmSempre\UserBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use WilhelmSempre\UserBundle\Model\UserInterface;
 
 /**
  * Class UserAuthenticatedEvent
- * @package WilhelmSempre\UserBundle\Events
+ * @package WilhelmSempre\UserBundle\Event
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
