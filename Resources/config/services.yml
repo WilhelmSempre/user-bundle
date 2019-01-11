@@ -1,6 +1,0 @@
-services:
-    wilhelmsempre.user.token.encoder:
-        class: WilhelmSempre\UserBundle\Authorization\Token\Encoder\TokenEncoder
-
-    wilhelmsempre.user.authorization:
-        class: WilhelmSempre\UserBundle\Authorization\Authorization

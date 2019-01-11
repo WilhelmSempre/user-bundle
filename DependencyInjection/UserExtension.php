@@ -23,16 +23,14 @@ class UserExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
-        
-        // ~
-        
         $configFile = new FileLocator(__DIR__ . '/../Resources/config');
-        
-        // ~
 
         $loader = new YamlFileLoader($container, $configFile);
         $loader->load('services.yml');
+
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        die(var_dump($configs));
     }
 }
