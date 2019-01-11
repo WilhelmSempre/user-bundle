@@ -7,12 +7,12 @@ namespace WilhelmSempre\UserBundle\TwoFactorAuthorization\Role;
  * Interface TwoFactorAuthorizationUserRolesFactoryInterface
  * @package WilhelmSempre\UserBundle\TwoFactorAuthorization\Role
  */
-interface TwoFactorAuthorizationUserRolesFactoryInterface
+interface TwoFactorUserRoleManagerFactoryInterface
 {
 
     /**
      * @param int $twoFactorAuthorizationMethod
      * @return TwoFactorAuthorizationRoleAssignerInterface
      */
-    public function createRoleAssigner(int $twoFactorAuthorizationMethod): TwoFactorAuthorizationRoleAssignerInterface;
+    public function getManager(int $twoFactorAuthorizationMethod): TwoFactorAuthorizationRoleAssignerInterface;
 }

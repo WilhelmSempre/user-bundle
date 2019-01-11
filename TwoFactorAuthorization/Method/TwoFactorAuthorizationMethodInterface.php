@@ -24,25 +24,25 @@ interface TwoFactorAuthorizationMethodInterface
 	 * @param TwoFactorAuthorizationValidatorInterface $twoFactorAuthorizationValidator
 	 * @return TwoFactorAuthorizationMethodInterface
 	 */
-    public function setTwoFactorTwoFactorAuthorizationValidator(TwoFactorAuthorizationValidatorInterface $twoFactorAuthorizationValidator): TwoFactorAuthorizationMethodInterface;
+    public function setTwoFactorAuthorizationValidator(TwoFactorAuthorizationValidatorInterface $twoFactorAuthorizationValidator): TwoFactorAuthorizationMethodInterface;
 
     /**
      * @param TwoFactorAuthorizationPrinterInterface $twoFactorAuthorizationPrinter
      * @return TwoFactorAuthorizationMethodInterface
      */
-	public function setTwoFactorTwoFactorAuthorizationPrinter(TwoFactorAuthorizationPrinterInterface $twoFactorAuthorizationPrinter): TwoFactorAuthorizationMethodInterface;
+	public function setTwoFactorAuthorizationPrinter(TwoFactorAuthorizationPrinterInterface $twoFactorAuthorizationPrinter): TwoFactorAuthorizationMethodInterface;
 	
 	/**
 	 * @return TwoFactorAuthorizationValidatorInterface
 	 *
 	 * @throws NullTwoFactorAuthorizationValidatorException
 	 */
-	public function getTwoFactorTwoFactorAuthorizationValidator(): TwoFactorAuthorizationValidatorInterface;
+	public function getTwoFactorAuthorizationValidator(): TwoFactorAuthorizationValidatorInterface;
 	
 	/**
 	 * @return TwoFactorAuthorizationPrinterInterface
 	 *
 	 * @throws NullTwoFactorAuthorizationPrinterException
 	 */
-	public function getTwoFactorTwoFactorAuthorizationPrinter(): TwoFactorAuthorizationPrinterInterface;
+	public function getTwoFactorAuthorizationPrinter(): TwoFactorAuthorizationPrinterInterface;
 }

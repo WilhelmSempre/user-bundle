@@ -2,8 +2,8 @@
 
 namespace WilhelmSempre\UserBundle\TwoFactorAuthorization\Role;
 
-use WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\GoogleAuthenticator\GoogleAuthenticatorRoleAssigner;
-use WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\Mail\MailRoleAssigner;
+use WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\GoogleAuthenticator\GoogleAuthenticatorRoleManager;
+use WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\Mail\MailRoleManager;
 use WilhelmSempre\UserBundle\Type\TwoFactorAuthorizationMethodType;
 use WilhelmSempre\UserBundle\Exception\NullTwoFactorAuthorizationMethodException;
 
@@ -13,26 +13,25 @@ use WilhelmSempre\UserBundle\Exception\NullTwoFactorAuthorizationMethodException
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class TwoFactorAuthorizationUserRolesFactory implements TwoFactorAuthorizationUserRolesFactoryInterface
+class TwoFactorUserRoleManagerFactory implements TwoFactorAuthorizationUserRolesFactoryInterface
 {
-
 
     /**
      * {@inheritdoc}
      */
-    public function createRoleAssigner(int $twoFactorAuthorizationMethod): TwoFactorAuthorizationRoleAssignerInterface
+    public function getManager(int $twoFactorAuthorizationMethod): TwoFactorAuthorizationRoleManagerInterface
     {
         switch ($twoFactorAuthorizationMethod) {
             case TwoFactorAuthorizationMethodType::MAIL:
-                $factory = new MailRoleAssigner();
+                $manager = new MailRoleManager();
                 break;
             case TwoFactorAuthorizationMethodType::GOOGLE_AUTHENTICATOR:
-                $factory = new GoogleAuthenticatorRoleAssigner();
+                $manager = new GoogleAuthenticatorRoleManager();
                 break;
             default:
                 throw new NullTwoFactorAuthorizationMethodException();
         }
 
-        return $factory;
+        return $manager;
     }
 }

@@ -21,7 +21,7 @@ class TwoFactorAuthorizationPlainPrinter implements TwoFactorAuthorizationPrinte
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getTwoFactorTwoFactorAuthorizationCode(): string
+	public function getTwoFactorAuthorizationCode(): string
 	{
 		return $this->twoFactorAuthorizationCode;
 	}
@@ -29,7 +29,7 @@ class TwoFactorAuthorizationPlainPrinter implements TwoFactorAuthorizationPrinte
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setTwoFactorTwoFactorAuthorizationCode(string $twoFactorAuthorizationCode): TwoFactorAuthorizationPrinterInterface
+	public function setTwoFactorAuthorizationCode(string $twoFactorAuthorizationCode): TwoFactorAuthorizationPrinterInterface
 	{
 		$this->twoFactorAuthorizationCode = $twoFactorAuthorizationCode;
 		

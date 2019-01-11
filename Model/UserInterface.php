@@ -89,26 +89,26 @@ interface UserInterface
     public function getEmail(): ?string;
 
     /**
-     * @return null|string
-     */
-    public function getAuthorizationSecretCode(): ?string;
-
-    /**
      * @return int|null
      */
-    public function getAuthorizationMethod(): ?int;
+    public function getTwoFactorAuthorizationMethod(): ?int;
 
     /**
-     * @param string $authorizationMethod
+     * @param string $twoFactorAuthorizationMethod
      * @return UserInterface
      */
-    public function setAuthorizationMethod(int $authorizationMethod): self;
-	
-	/**
-	 * @param string $secretCode
-	 * @return UserInterface
-	 */
-	public function setAuthorizationSecretCode(string $secretCode): self;
+    public function setTwoFactorAuthorizationMethod(int $twoFactorAuthorizationMethod): self;
+
+    /**
+     * @return bool
+     */
+    public function isTwoFactorAuthorizationEnabled(): bool;
+
+    /**
+     * @param bool $twoFactorAuthorizationEnabled
+     * @return UserInterface
+     */
+    public function setTwoFactorAuthorizationEnabled(bool $twoFactorAuthorizationEnabled): self;
 
     /**
      * @param null $token
@@ -120,14 +120,4 @@ interface UserInterface
      * @return null|string
      */
 	public function getToken(): ?string;
-
-    /**
-     * @return bool
-     */
-    public function isAuthorized(): bool;
-
-    /**
-     * @param bool $authorized
-     */
-    public function setAuthorized(bool $authorized): void;
 }

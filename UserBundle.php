@@ -2,7 +2,9 @@
 
 namespace WilhelmSempre\UserBundle;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use WilhelmSempre\UserBundle\Security\Factory\AuthorizationFactory;
 
 /**
  * Class UserBundle

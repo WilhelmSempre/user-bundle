@@ -42,8 +42,8 @@ class GoogleAuthenticator implements TwoFactorAuthorizationMethodInterface
         try {
             $this->twoFactorAuthorizationCode = $twoFactorAuthorizationCodeEncoder->createTwoFactorAuthorizationCode();
 
-            $this->getTwoFactorTwoFactorAuthorizationPrinter()
-                ->setTwoFactorTwoFactorAuthorizationCode($this->twoFactorAuthorizationCode);
+            $this->getTwoFactorAuthorizationPrinter()
+                ->setTwoFactorAuthorizationCode($this->twoFactorAuthorizationCode);
         } catch (\Exception $error) {}
 
         return $this;
@@ -52,7 +52,7 @@ class GoogleAuthenticator implements TwoFactorAuthorizationMethodInterface
     /**
      * {@inheritdoc}
      */
-    public function setTwoFactorTwoFactorAuthorizationPrinter(TwoFactorAuthorizationPrinterInterface $twoFactorAuthorizationPrinter): TwoFactorAuthorizationMethodInterface
+    public function setTwoFactorAuthorizationPrinter(TwoFactorAuthorizationPrinterInterface $twoFactorAuthorizationPrinter): TwoFactorAuthorizationMethodInterface
     {
         $this->twoFactorAuthorizationPrinter = $twoFactorAuthorizationPrinter;
 
@@ -62,7 +62,7 @@ class GoogleAuthenticator implements TwoFactorAuthorizationMethodInterface
     /**
      * {@inheritdoc}
      */
-    public function setTwoFactorTwoFactorAuthorizationValidator(TwoFactorAuthorizationValidatorInterface $twoFactorAuthorizationValidator): TwoFactorAuthorizationMethodInterface
+    public function setTwoFactorAuthorizationValidator(TwoFactorAuthorizationValidatorInterface $twoFactorAuthorizationValidator): TwoFactorAuthorizationMethodInterface
     {
         $this->twoFactorAuthorizationValidator = $twoFactorAuthorizationValidator;
 
@@ -72,7 +72,7 @@ class GoogleAuthenticator implements TwoFactorAuthorizationMethodInterface
     /**
      * {@inheritdoc}
      */
-    public function getTwoFactorTwoFactorAuthorizationPrinter(): TwoFactorAuthorizationPrinterInterface
+    public function getTwoFactorAuthorizationPrinter(): TwoFactorAuthorizationPrinterInterface
     {
         if (null === $this->twoFactorAuthorizationPrinter) {
             throw new NullTwoFactorAuthorizationPrinterException();
@@ -84,7 +84,7 @@ class GoogleAuthenticator implements TwoFactorAuthorizationMethodInterface
     /**
      * {@inheritdoc}
      */
-    public function getTwoFactorTwoFactorAuthorizationValidator(): TwoFactorAuthorizationValidatorInterface
+    public function getTwoFactorAuthorizationValidator(): TwoFactorAuthorizationValidatorInterface
     {
         if (null === $this->twoFactorAuthorizationValidator) {
             throw new NullTwoFactorAuthorizationValidatorException();

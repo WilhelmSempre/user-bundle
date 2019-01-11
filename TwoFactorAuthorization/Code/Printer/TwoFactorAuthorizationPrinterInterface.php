@@ -14,11 +14,11 @@ interface TwoFactorAuthorizationPrinterInterface
 	/**
 	 * @return string
 	 */
-	public function getTwoFactorTwoFactorAuthorizationCode(): string;
+	public function getTwoFactorAuthorizationCode(): string;
 	
 	/**
 	 * @param string $twoFactorAuthorizationCode
 	 * @return TwoFactorAuthorizationPrinterInterface
 	 */
-	public function setTwoFactorTwoFactorAuthorizationCode(string $twoFactorAuthorizationCode): TwoFactorAuthorizationPrinterInterface;
+	public function setTwoFactorAuthorizationCode(string $twoFactorAuthorizationCode): TwoFactorAuthorizationPrinterInterface;
 }

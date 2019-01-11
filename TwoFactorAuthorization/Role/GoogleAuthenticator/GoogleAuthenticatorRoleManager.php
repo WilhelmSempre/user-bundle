@@ -3,24 +3,37 @@
 namespace WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\GoogleAuthenticator;
 
 use WilhelmSempre\UserBundle\Model\User;
-use WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\TwoFactorAuthorizationRoleAssignerInterface;
+use WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\TwoFactorAuthorizationRoleManagerInterface;
 
 /**
- * Class GoogleAuthenticatorRoleAssigner
+ * Class GoogleAuthenticatorRoleManager
  * @package WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\GoogleAuthenticator
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class GoogleAuthenticatorRoleAssigner implements TwoFactorAuthorizationRoleAssignerInterface
+class GoogleAuthenticatorRoleManager implements TwoFactorAuthorizationRoleManagerInterface
 {
+
+    /**
+     * @var string
+     */
+    const AUTHORIZATION_ROLE = 'AUTHORIZATION_BY_GOOGLE_REQUIRED';
 
     /**
      * {@inheritdoc}
      */
-    public function assignRoleToUser(User $user): array
+    public function addUserRole(User $user): array
     {
-        $user->setRole('AUTHORIZATION_BY_GOOGLE_REQUIRED');
+        $user->setRole(self::AUTHORIZATION_ROLE);
 
         return $user->getRoles();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeUserRole(User $user): array
+    {
+
     }
 }

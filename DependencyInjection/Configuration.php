@@ -22,7 +22,8 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('wilhelm');
 
         $rootNode->children()
-            ->arrayNode('user');
+            ->arrayNode('user')->end()
+            ->end();
 
         return $treeBuilder;
     }

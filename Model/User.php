@@ -54,7 +54,7 @@ abstract class User implements UserInterface, \Serializable, SecurityUserInterfa
     /**
      * @var array
      *
-     * @ORM\Column(name="roles", type="simple_array")
+     * @ORM\Column(name="roles", type="json_array")
      */
     protected $roles;
 
@@ -68,16 +68,16 @@ abstract class User implements UserInterface, \Serializable, SecurityUserInterfa
     /**
      * @var int
      *
-     * @ORM\Column(name="authorization_method", type="integer", length=1)
+     * @ORM\Column(name="two_factor_authorization_method", nullable=true, type="integer", length=1)
      */
-    protected $authorizationMethod;
+    protected $twoFactorAuthorizationMethod = null;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(name="authorization_secret_code", type="string", length=255)
+     * @ORM\Column(name="two_factor_authorization_enabled", type="boolean")
      */
-    protected $authorizationSecretCode;
+    protected $twoFactorAuthorizationEnabled = false;
 
     /**
      * @var string
@@ -85,13 +85,6 @@ abstract class User implements UserInterface, \Serializable, SecurityUserInterfa
      * @ORM\Column(name="token", type="string", length=255, nullable=true)
      */
     protected $token;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="authorized", type="boolean", options={"default" : 0})
-     */
-    protected $authorized = false;
 
     /**
      * {@inheritdoc}
@@ -204,35 +197,35 @@ abstract class User implements UserInterface, \Serializable, SecurityUserInterfa
     /**
      * {@inheritdoc}
      */
-	public function setAuthorizationSecretCode(string $secretCode): UserInterface
-	{
-		$this->authorizationSecretCode = $secretCode;
-		
-		return $this;
-	}
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAuthorizationSecretCode(): ?string
+    public function getTwoFactorAuthorizationMethod(): ?int
     {
-        return $this->authorizationSecretCode;
+        return $this->twoFactorAuthorizationMethod;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getAuthorizationMethod(): ?int
+    public function setTwoFactorAuthorizationMethod(int $twoFactorAuthorizationMethod = null): UserInterface
     {
-        return $this->authorizationMethod;
+        $this->twoFactorAuthorizationMethod = $twoFactorAuthorizationMethod;
+
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setAuthorizationMethod(int $authorizationMethod): UserInterface
+    public function isTwoFactorAuthorizationEnabled(): bool
     {
-        $this->authorizationMethod = $authorizationMethod;
+        return $this->twoFactorAuthorizationEnabled;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTwoFactorAuthorizationEnabled(bool $twoFactorAuthorizationEnabled): UserInterface
+    {
+        $this->twoFactorAuthorizationEnabled = $twoFactorAuthorizationEnabled;
 
         return $this;
     }
@@ -313,21 +306,5 @@ abstract class User implements UserInterface, \Serializable, SecurityUserInterfa
     public function getToken(): ?string
     {
         return $this->token;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isAuthorized(): bool
-    {
-        return $this->authorized;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setAuthorized(bool $authorized): void
-    {
-        $this->authorized = $authorized;
     }
 }

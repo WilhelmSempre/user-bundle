@@ -12,12 +12,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * Class UserLoginForm
+ * Class AbstractLoginForm
  * @package WilhelmSempre\UserBundle\Form
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class UserLoginForm extends AbstractType
+abstract class AbstractLoginForm extends AbstractType
 {
 
     /**

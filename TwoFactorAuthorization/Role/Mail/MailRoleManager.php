@@ -3,24 +3,37 @@
 namespace WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\Mail;
 
 use WilhelmSempre\UserBundle\Model\User;
-use WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\TwoFactorAuthorizationRoleAssignerInterface;
+use WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\TwoFactorAuthorizationRoleManagerInterface;
 
 /**
- * Class MailRoleAssigner
+ * Class MailRoleManager
  * @package WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\Mail
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class MailRoleAssigner implements TwoFactorAuthorizationRoleAssignerInterface
+class MailRoleManager implements TwoFactorAuthorizationRoleManagerInterface
 {
+
+    /**
+     * @var string
+     */
+    const AUTHORIZATION_ROLE = 'AUTHORIZATION_BY_MAIL_REQUIRED';
 
     /**
      * {@inheritdoc}
      */
-    public function assignRoleToUser(User $user): array
+    public function addUserRole(User $user): array
     {
-        $user->setRole('AUTHORIZATION_BY_MAIL_REQUIRED');
+        $user->setRole(self::AUTHORIZATION_ROLE);
 
         return $user->getRoles();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeUserRole(User $user): array
+    {
+
     }
 }

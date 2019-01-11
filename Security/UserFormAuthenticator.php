@@ -1,6 +1,6 @@
 <?php
 
-namespace WilhelmSempre\UserBundle\Security\Firewall\Http;
+namespace WilhelmSempre\UserBundle\Security;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
@@ -11,14 +11,13 @@ use Symfony\Component\Security\Http\Authentication\SimpleFormAuthenticatorInterf
 use WilhelmSempre\UserBundle\Model\User;
 use WilhelmSempre\UserBundle\Security\Provider\AuthorizationProvider;
 use WilhelmSempre\UserBundle\Security\Token\UserTwoFactorToken;
-use WilhelmSempre\UserBundle\TwoFactorAuthorization\Firewall\Http\TwoFactorAuthorizationRoleAssigner;
 use WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\TwoFactorUserRoleManagerFactory;
 use WilhelmSempre\UserBundle\Type\TwoFactorAuthorizationMethodType;
 use WilhelmSempre\UserBundle\Type\TwoFactorAuthorizationRequiredUserRoleType;
 
 /**
  * Class UserFormAuthenticator
- * @package WilhelmSempre\UserBundle\Security\Firewall\Http
+ * @package WilhelmSempre\UserBundle\Security
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
@@ -61,10 +60,14 @@ class UserFormAuthenticator implements SimpleFormAuthenticatorInterface
 
         $twoFactorAuthorizationMethod = $user->getTwoFactorAuthorizationMethod();
 
-        $userRoles = $this->factorUserRoleManagerFactory
-            ->getManager($twoFactorAuthorizationMethod)
-            ->addUserRole($user)
-        ;
+        $userRoles = $user->getRoles();
+
+        if (null !== $twoFactorAuthorizationMethod) {
+            $userRoles = $this->factorUserRoleManagerFactory
+                ->getManager($twoFactorAuthorizationMethod)
+                ->addUserRole($user)
+            ;
+        }
 
         return new UsernamePasswordToken($user, $credentials, $providerKey, $userRoles);
     }

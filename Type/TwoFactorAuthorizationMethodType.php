@@ -3,18 +3,13 @@
 namespace WilhelmSempre\UserBundle\Type;
 
 /**
- * Class TwoFactorAuthorizationMethodTypes
- * @package WilhelmSempre\UserBundle\TwoFactorAuthorization\Method
+ * Class TwoFactorAuthorizationMethodType
+ * @package WilhelmSempre\UserBundle\Type
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class TwoFactorAuthorizationMethodTypes
+class TwoFactorAuthorizationMethodType
 {
-
-    /**
-     * @var int
-     */
-    const UNSET = 0;
 
     /**
      * @var int
@@ -30,7 +25,6 @@ class TwoFactorAuthorizationMethodTypes
 	 * @var array
 	 */
     private static $choices = [
-        self::UNSET => 'None',
 	    self::GOOGLE_AUTHENTICATOR => 'Google Authenticator',
 	    self::MAIL => 'Mail',
     ];
