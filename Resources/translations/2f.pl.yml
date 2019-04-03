@@ -1,0 +1,17 @@
+mail:
+  message: 'Na Twój adres <b> $email </b> został wysłany kod, który będziesz musiał wpisać w pole.'
+
+google.authenticator:
+  message: 'Wpisz w pole wygenerowany przez Google Authenticator kod.'
+
+two.factor:
+    form:
+      code:
+        label: 'Podaj kod:'
+        placeholder: 'Wpisz kod'
+      submit:
+        label: 'OK'
+
+    errors:
+      fill.code: 'Wpisz kod'
+      code.invalid: 'Podany kod jest nieprawidłowy'

@@ -1,0 +1,4 @@
+mails:
+  authorization.code:
+    subject: 'Authorization code'
+    content: 'Your authorization code is: <b>$code</b>'

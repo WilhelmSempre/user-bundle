@@ -1,0 +1,13 @@
+{% extends '@User/mails/_base.html.twig' %}
+
+{% block header %}
+    <header class="header">
+        <h1>{{ 'mails.authorization.code.subject'|trans({}, 'mails')|raw }}</h1>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {{ 'mails.authorization.code.content'|trans({ '$code': code }, 'mails')|raw }}
+    </div>
+{% endblock %}

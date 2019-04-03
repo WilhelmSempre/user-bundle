@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <p class="alert alert-info">{{ 'mail.message'|trans({ '$email' : app.user.email }, '2f')|raw }}</p>
+
+    {% if errors %}
+        {% for error in errors %}
+            <p class="error">
+                {{ error.message }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+    {{ form_start(twoFactorForm) }}
+    {{ form_end(twoFactorForm) }}
+{% endblock %}
+{% block javascripts %}{% endblock %}

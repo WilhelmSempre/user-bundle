@@ -19,11 +19,13 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('wilhelm');
+        $rootNode = $treeBuilder->root('user');
 
-        $rootNode->children()
-            ->arrayNode('user')->end()
-            ->end();
+        $rootNode
+            ->children()
+                ->scalarNode('redirect_after_authorization_route')->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

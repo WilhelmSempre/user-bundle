@@ -1,0 +1,86 @@
+parameters:
+
+services:
+  wilhelmsempre.user.token.encoder:
+    class: WilhelmSempre\UserBundle\TwoFactorAuthorization\Token\Encoder\TokenEncoder
+    public: false
+    autowire: true
+
+  wilhelmsempre.user.two.factor.authorization:
+    class: WilhelmSempre\UserBundle\TwoFactorAuthorization\TwoFactorAuthorization
+    public: false
+    autowire: true
+
+  wilhelmsempre.user.two.factor.authorization.role.manager.factory:
+    class: WilhelmSempre\UserBundle\TwoFactorAuthorization\Role\TwoFactorUserRoleManagerFactory
+    public: false
+    autowire: true
+
+  wilhelmsempre.user.security.form.authenticator:
+    class: WilhelmSempre\UserBundle\Security\UserFormAuthenticator
+    public: false
+    autowire: true
+    arguments:
+      - '@security.user_password_encoder.generic'
+      - '@wilhelmsempre.token.service'
+
+  wilhelmsempre.user.two.factor.controller.listener:
+    class: WilhelmSempre\UserBundle\Listener\TwoFactorControllerListener
+    public: false
+    autowire: true
+    arguments:
+      - '@security.token_storage'
+      - '@router'
+      - '@service_container'
+      - '@wilhelmsempre.user.two.factor.code.mailer'
+      - '@wilhelmsempre.user.service'
+    tags:
+      - { name: kernel.event_listener, event: kernel.controller, method: createTwoFactorAuthorization, priority: 2048 }
+
+  wilhelmsempre.user.login.form:
+    class: WilhelmSempre\UserBundle\Form\LoginType
+    public: false
+    autowire: true
+    arguments:
+      - '@translator.default'
+      - '@request_stack'
+      - '@security.firewall.map'
+    tags:
+      - { name: form.type }
+
+  wilhelmsempre.user.two.factor.code.form:
+    class: WilhelmSempre\UserBundle\Form\TwoFactorCodeType
+    public: false
+    autowire: true
+    arguments:
+      - '@translator.default'
+      - '@router.default'
+      - ''
+    tags:
+      - { name: form.type }
+
+  wilhelmsempre.user.two.factor.code.mailer:
+    class: WilhelmSempre\UserBundle\Services\Mailing\TwoFactorAuthorizationCodeMailer
+    public: false
+    autowire: true
+    arguments:
+      - '@swiftmailer.mailer.default'
+      - '@translator.default'
+      - '@templating.engine.twig'
+      - '@event_dispatcher'
+      - '%mailer_user%'
+
+  wilhelmsempre.user.service:
+    class: WilhelmSempre\UserBundle\Services\UserService
+    public: false
+    autowire: true
+    arguments:
+      - '@doctrine.orm.default_entity_manager'
+
+  wilhelmsempre.token.service:
+    class: WilhelmSempre\UserBundle\Services\TokenService
+    public: false
+    autowire: true
+    arguments:
+      - '@security.token_storage'
+      - '@wilhelmsempre.user.two.factor.authorization.role.manager.factory'

@@ -13,7 +13,7 @@ use WilhelmSempre\UserBundle\Exception\NullTwoFactorAuthorizationMethodException
  *
  * @author Rafał Głuszak <rafal.gluszak@gmail.com>
  */
-class TwoFactorUserRoleManagerFactory implements TwoFactorAuthorizationUserRolesFactoryInterface
+class TwoFactorUserRoleManagerFactory implements TwoFactorUserRoleManagerFactoryInterface
 {
 
     /**

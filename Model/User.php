@@ -283,6 +283,16 @@ abstract class User implements UserInterface, \Serializable, SecurityUserInterfa
     }
 
     /**
+     * @param array $roles
+     */
+    public function setRoles(array $roles = []): UserInterface
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getSalt()

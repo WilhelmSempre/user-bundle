@@ -1,0 +1,16 @@
+login:
+  form:
+    username:
+      label: 'Nazwa użytkownika'
+      placeholder: 'Nazwa użytkownika'
+    password:
+      label: 'Hasło'
+      placeholder: 'Podaj hasło'
+    rememberme:
+      label: 'Zapamiętaj hasło'
+    submit:
+      label: 'Loguj!'
+
+  errors:
+    fill.username: 'Wypełnij nazwę użytkownika'
+    fill.password: 'Wypełnij pole hasła'

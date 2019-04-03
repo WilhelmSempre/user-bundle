@@ -81,6 +81,12 @@ interface UserInterface
      * @param string $role
      * @return UserInterface
      */
+    public function setRoles(array $roles = []): UserInterface;
+
+    /**
+     * @param string $role
+     * @return UserInterface
+     */
     public function setRole(string $role): UserInterface;
 
     /**

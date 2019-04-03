@@ -34,6 +34,14 @@ class GoogleAuthenticatorRoleManager implements TwoFactorAuthorizationRoleManage
      */
     public function removeUserRole(User $user): array
     {
+        $roles = $user->getRoles();
 
+        foreach ($roles as $role) {
+            if ($role !== self::AUTHORIZATION_ROLE) {
+                $user->setRole($role);
+            }
+        }
+
+        return $user->getRoles();
     }
 }

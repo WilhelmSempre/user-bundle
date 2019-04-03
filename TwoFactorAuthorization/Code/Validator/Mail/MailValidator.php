@@ -2,6 +2,8 @@
 	
 namespace WilhelmSempre\UserBundle\TwoFactorAuthorization\Code\Validator\Mail;
 
+use WilhelmSempre\UserBundle\Model\UserInterface;
+use WilhelmSempre\UserBundle\Services\UserService;
 use WilhelmSempre\UserBundle\TwoFactorAuthorization\Code\Validator\TwoFactorAuthorizationValidatorInterface;
 
 /**
@@ -16,8 +18,22 @@ class MailValidator implements TwoFactorAuthorizationValidatorInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function isValid(string $twoFactorAuthorizationCode): bool
+	public function isValid(string $twoFactorAuthorizationCode, ?UserInterface $user, UserService $userService): bool
 	{
-		// TODO: Implement isValid() method.
+		if (!$user) {
+		    return false;
+        }
+
+		$token = $user->getToken();
+
+		$isTokensIdentical = $token === $twoFactorAuthorizationCode;
+
+		if (!$isTokensIdentical) {
+		    return false;
+        }
+
+		//$userService->clearUserToken($user);
+
+		return true;
 	}
 }

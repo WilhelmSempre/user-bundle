@@ -14,5 +14,5 @@ interface TwoFactorUserRoleManagerFactoryInterface
      * @param int $twoFactorAuthorizationMethod
      * @return TwoFactorAuthorizationRoleAssignerInterface
      */
-    public function getManager(int $twoFactorAuthorizationMethod): TwoFactorAuthorizationRoleAssignerInterface;
+    public function getManager(int $twoFactorAuthorizationMethod): TwoFactorAuthorizationRoleManagerInterface;
 }

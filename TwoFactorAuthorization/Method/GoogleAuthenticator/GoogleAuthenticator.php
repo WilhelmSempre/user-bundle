@@ -43,7 +43,8 @@ class GoogleAuthenticator implements TwoFactorAuthorizationMethodInterface
             $this->twoFactorAuthorizationCode = $twoFactorAuthorizationCodeEncoder->createTwoFactorAuthorizationCode();
 
             $this->getTwoFactorAuthorizationPrinter()
-                ->setTwoFactorAuthorizationCode($this->twoFactorAuthorizationCode);
+                ->setTwoFactorAuthorizationCode($this->twoFactorAuthorizationCode)
+            ;
         } catch (\Exception $error) {}
 
         return $this;
